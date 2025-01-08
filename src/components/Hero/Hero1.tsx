@@ -27,7 +27,7 @@ function Hero1() {
             </Link>
           </div>
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex ">
           <Image
             src={"/Hero1.svg"}
             width={650}
