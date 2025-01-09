@@ -1,6 +1,7 @@
 import Collabration from "@/components/Hero/Collabration";
 import Hero from "@/components/Hero/Hero";
 import HowItWorks from "@/components/Hero/HowItWorks";
+import OurMission from "@/components/Hero/OurMission";
 import WhyPrepare from "@/components/Hero/WhyPrepare";
 
 export default function Page() {
@@ -11,6 +12,7 @@ export default function Page() {
         <Collabration />
         <HowItWorks />
         <WhyPrepare />
+        <OurMission/>
       </div>
     </>
   );
