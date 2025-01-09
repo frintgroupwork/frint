@@ -3,7 +3,7 @@ import Section from "../Section";
 import { Button, Link } from "@nextui-org/react";
 import Image from "next/image";
 
-function Hero1() {
+function Hero() {
   return (
     <>
       <Section className="flex flex-row w-[90%] items-center justify-between mx-auto">
@@ -27,7 +27,7 @@ function Hero1() {
             </Link>
           </div>
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex ">
           <Image
             src={"/Hero1.svg"}
             width={650}
@@ -62,4 +62,4 @@ export const AnchorIcon = () => {
   );
 };
 
-export default Hero1;
+export default Hero;
