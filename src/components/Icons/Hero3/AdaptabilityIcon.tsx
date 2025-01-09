@@ -28,13 +28,13 @@ const AdaptabilityIcon = () => {
         <path
           d="M31.5 18L33 16.5"
           stroke="#1D4ED8"
-          stroke-width="2"
+          strokeWidth="2"
           stroke-linecap="round"
         />
         <path
           d="M24.0681 12.8706C24.1821 12.7643 24.4332 12.6703 24.7825 12.6033C25.1318 12.5363 25.5597 12.5 26 12.5C26.4403 12.5 26.8682 12.5363 27.2175 12.6033C27.5668 12.6703 27.8179 12.7643 27.9319 12.8706"
           stroke="#1D4ED8"
-          stroke-width="2"
+          strokeWidth="2"
           stroke-linecap="round"
         />
       </g>
@@ -48,7 +48,7 @@ const AdaptabilityIcon = () => {
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"

@@ -24,13 +24,13 @@ const ConfidenceIcon = () => {
           cy="22.5"
           r="10"
           stroke="#1D4ED8"
-          stroke-width="2"
+          floodOpacity="2"
           stroke-linecap="round"
         />
         <path
           d="M23.4019 24C23.6652 24.4561 24.0439 24.8348 24.5 25.0981C24.9561 25.3614 25.4734 25.5 26 25.5C26.5266 25.5 27.0439 25.3614 27.5 25.0981C27.9561 24.8348 28.3348 24.4561 28.5981 24"
           stroke="#1D4ED8"
-          stroke-width="2"
+          floodOpacity="2"
           stroke-linecap="round"
         />
         <rect
@@ -41,7 +41,7 @@ const ConfidenceIcon = () => {
           rx="1.125"
           fill="#1D4ED8"
           stroke="#1D4ED8"
-          stroke-width="0.25"
+          floodOpacity="0.25"
           stroke-linecap="round"
         />
         <rect
@@ -52,7 +52,7 @@ const ConfidenceIcon = () => {
           rx="1.125"
           fill="#1D4ED8"
           stroke="#1D4ED8"
-          stroke-width="0.25"
+          floodOpacity="0.25"
           stroke-linecap="round"
         />
       </g>
@@ -66,7 +66,7 @@ const ConfidenceIcon = () => {
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
