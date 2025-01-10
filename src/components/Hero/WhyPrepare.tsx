@@ -11,7 +11,7 @@ const WhyPrepare = () => {
             <p className="text-base text-[#1d4ed8] font-semibold max-lg:text-sm whitespace-normal">
               Why prepare?
             </p>
-            <p className="text-3xl font-medium text-neutral-800 max-lg:text-2xl whitespace-normal ">
+            <p className="text-3xl font-medium text-neutral-800 max-lg:text-2xl whitespace-normal">
               Gain confidence and get real results{" "}
             </p>
           </div>

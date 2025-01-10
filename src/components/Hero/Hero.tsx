@@ -6,7 +6,7 @@ import Image from "next/image";
 function Hero() {
   return (
     <>
-      <Section className="flex flex-row w-[90%] items-center justify-between mx-auto">
+      <Section className="flex flex-row w-[90%] items-center justify-between mx-auto py-5">
         <div className="flex flex-col gap-4 max-md:pt-4">
           <p className="text-4xl font-medium text-neutral-800 max-lg:text-2xl whitespace-normal">
             PREPARE YOUR NEXT CAREER INTERVIEW{" "}
