@@ -4,6 +4,7 @@ import Section from "./Section";
 import Image from "next/image";
 import { Form, Input, Checkbox, Button } from "@nextui-org/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Authentication = ({
   isLogin,
@@ -12,6 +13,7 @@ const Authentication = ({
   isLogin?: boolean;
   isSignup?: boolean;
 }) => {
+  const router = useRouter()
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [submitted, setSubmitted] = React.useState<{
@@ -69,8 +71,14 @@ const Authentication = ({
 
     setErrors({});
     setSubmitted(data);
-    console.log("data:",data);
-    
+    if (submitted && submitted.email && submitted.password && isLogin) {
+      // Handle success response
+      router.push('/')
+    }
+  };
+
+  const handleNavigation = (path: string) => {
+    router.push(path);
   };
 
   return (
@@ -175,9 +183,13 @@ const Authentication = ({
                       })
                     }
                   >
-                    Remember me {" "}
-                    <span className="text-[#1d4ed8] opacity-0">Term of <span className="max-lg:hidden">Service</span> and{" "}</span> 
-                    <span className="text-[#1d4ed8] opacity-0">Privacy Policy.</span>
+                    Remember me{" "}
+                    <span className="text-[#1d4ed8] opacity-0">
+                      Term of <span className="max-lg:hidden">Service</span> and{" "}
+                    </span>
+                    <span className="text-[#1d4ed8] opacity-0">
+                      Privacy Policy.
+                    </span>
                   </Checkbox>
 
                   {errors.terms && (
@@ -185,10 +197,11 @@ const Authentication = ({
                       {errors.terms}
                     </span>
                   )}
-
-                  <Button className="w-full" color="primary" type="submit">
-                    Login
-                  </Button>
+                  <Link href="">
+                    <Button className="w-full" color="primary" type="submit">
+                      Log in
+                    </Button>
+                  </Link>
                 </div>
 
                 <div className="flex flex-col gap-2 justify-center items-center mt-4">
@@ -201,7 +214,7 @@ const Authentication = ({
                   </div>
                   <div>
                     <p className="text-base text-gray-500">
-                     Don’t have an account ?{" "}
+                      Don’t have an account ?{" "}
                       <Link
                         href={"/signup"}
                         className="font-medium text-[#1d4ed8] cursor-pointer"
@@ -307,7 +320,7 @@ const Authentication = ({
                     </span>
                   )}
 
-                  <Button className="w-full" color="primary" type="submit">
+                  <Button className="w-full" color="primary" type="submit" onClick={() => handleNavigation('/survey/1')}>
                     Sign up
                   </Button>
                 </div>

@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 
-export const Nav = ({className}:{className?: string}) => {
+export const Nav = ({ className }: { className?: string }) => {
   return (
     <>
       <Navbar shouldHideOnScroll className={`bg-[#F8F8F8] ${className}`}>
@@ -22,7 +22,10 @@ export const Nav = ({className}:{className?: string}) => {
           />
         </NavbarBrand>
 
-        <NavbarContent className="hidden sm:flex gap-4 bg-white sm:px-8 sm:rounded-2xl sm:shadow-sm" justify="center">
+        <NavbarContent
+          className="hidden sm:flex gap-4 bg-white sm:px-8 sm:rounded-2xl sm:shadow-sm"
+          justify="center"
+        >
           <NavbarItem isActive>
             <Link color="primary" href="#">
               Home
@@ -47,14 +50,18 @@ export const Nav = ({className}:{className?: string}) => {
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
-            <Button as={Link} color="primary" href="#" variant="bordered">
-              Log In
-            </Button>
+            <Link href="/login">
+              <Button color="primary" variant="bordered" size="lg">
+                Login
+              </Button>
+            </Link>
           </NavbarItem>
           <NavbarItem>
-            <Button as={Link} color="primary" href="#" variant="solid">
-              Sign Up
-            </Button>
+            <Link href="/signup">
+              <Button color="primary" variant="solid" size="lg">
+                Sign Up
+              </Button>
+            </Link>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
