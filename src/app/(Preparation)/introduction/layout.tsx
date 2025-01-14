@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   icons: "frint_logo.svg",
-  title: "FRINT - sign up",
+  title: "FRINT - introduction",
   description: "Your confidence is our confidence.",
 };
 
@@ -29,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div>
           <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   );
