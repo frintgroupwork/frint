@@ -14,7 +14,6 @@ const Authentication = ({
   isSignup?: boolean;
 }) => {
   const router = useRouter()
-  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [submitted, setSubmitted] = React.useState<{
     [k: string]: FormDataEntryValue;
@@ -24,8 +23,8 @@ const Authentication = ({
 
   // Real-time password validation
   const getPasswordError = (value: string) => {
-    if (value.length < 4) {
-      return "Password must be 4 characters or more";
+    if (value.length < 8) {
+      return "Password must be 8 characters or more";
     }
     if ((value.match(/[A-Z]/g) || []).length < 1) {
       return "Password needs at least 1 uppercase letter";
@@ -320,7 +319,7 @@ const Authentication = ({
                     </span>
                   )}
 
-                  <Button className="w-full" color="primary" type="submit" onClick={() => handleNavigation('/survey/1')}>
+                  <Button className="w-full" color="primary" type="submit" onClick={() => handleNavigation('/survey/step-1')}>
                     Sign up
                   </Button>
                 </div>

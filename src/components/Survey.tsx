@@ -117,14 +117,14 @@ const Survey = ({
                 <Button
                   className="bg-white font-medium text-neutral-800 shadow-md"
                   size="lg"
-                  onClick={() => handleNavigation("/survey/2")}
+                  onClick={() => handleNavigation("/survey/step-2")}
                 >
                   Student
                 </Button>
                 <Button
                   className="bg-white font-medium text-neutral-800 shadow-md"
                   size="lg"
-                  onClick={() => handleNavigation("/survey/2")}
+                  onClick={() => handleNavigation("/survey/step-2")}
                 >
                   Working Professional
                 </Button>
@@ -207,7 +207,7 @@ const Survey = ({
                   isDisabled={!isValidSelection}
                   size="md"
                   className="w-1/3"
-                  onClick={() => handleNavigation("/survey/3")}
+                  onClick={() => handleNavigation("/survey/step-3")}
                 >
                   Next step
                 </Button>

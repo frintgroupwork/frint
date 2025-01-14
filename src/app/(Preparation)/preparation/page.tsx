@@ -1,23 +1,20 @@
-import BackgroundTemplate from "@/components/BackgroundTemplate";
-import SurveyQa from "@/components/SurveyQa";
-import { Progress } from "@nextui-org/react";
+import SessionStartPage from "@/components/SessionStartPage";
 import React from "react";
 
-export default function page() {
+export default function page({children}:{children: React.ReactNode}) {
   return (
     <>
-      {/* <BackgroundTemplate>
-        <Progress aria-label="Loading..." className="max-w-md" value={60} />
-        page
-      </BackgroundTemplate> */}
-      <SurveyQa
+      {/* <SurveyQa
         ButtonQas1="Computer Science"
         ButtonQas2="Software Engineering"
         ButtonQas3="Information Technology"
         ButtonQas4="Other"
         Question="What is your field of study?"
         progress={10}
-      />
+      /> */}
+
+      <SessionStartPage/>
+      {children}
     </>
   );
 }

@@ -7,15 +7,15 @@ const BackgroundTemplate = ({children}:{children: React.ReactNode}) => {
         <div className="absolute top-0 left-0 ">
           <Image
             alt="top-left"
-            src={"prepare/top-left.svg"}
-            height={200}
-            width={250}
+            src={"/prepare/top-left.svg"}
+            height={150}
+            width={200}
           />
         </div>
         <div className="absolute top-0 right-0">
           <Image
-            alt="top-left"
-            src={"prepare/top-right.svg"}
+            alt="top-right"
+            src={"/prepare/top-right.svg"}
             height={200}
             width={150}
           />{" "}
@@ -23,15 +23,15 @@ const BackgroundTemplate = ({children}:{children: React.ReactNode}) => {
         <div className="absolute bottom-0 left-0">
           <Image
             alt="buttom-left"
-            src={"prepare/bottom-left.svg"}
-            height={350}
-            width={400}
+            src={"/prepare/bottom-left.svg"}
+            height={250}
+            width={300}
           />{" "}
         </div>
         <div className="absolute bottom-0 right-0">
           <Image
-            alt="top-left"
-            src={"prepare/bottom-right.svg"}
+            alt="buttom-right"
+            src={"/prepare/bottom-right.svg"}
             height={100}
             width={80}
           />{" "}
