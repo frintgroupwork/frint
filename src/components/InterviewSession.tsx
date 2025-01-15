@@ -3,9 +3,15 @@ import React, { useState } from "react";
 import SessionTemplate from "./SessionTemplate";
 import { Progress, Button, Chip } from "@nextui-org/react";
 import Section from "./Section";
+import { useRouter } from "next/navigation";
 
-const InterviewSession = ({progress, step, main_question,des,tip1,tip2,tip3,example }:{progress: number, step: string,main_question: string,des: string, tip1: string, tip2: string, tip3:string, example: string}) => {
+const InterviewSession = ({progress, step, main_question,des,tip1,tip2,tip3,example,navigationPath }:{progress: number, step: string,main_question: string,des: string, tip1: string, tip2: string, tip3:string, example: string, navigationPath: string}) => {
  
+  const router = useRouter()
+
+  const handlePath = (path: string) => {
+    router.push(path)
+  }
   const [showExample, setShowExample] = useState(false);
 
   return (
@@ -69,7 +75,7 @@ const InterviewSession = ({progress, step, main_question,des,tip1,tip2,tip3,exam
           >
             {showExample ? "Hide Question Examples" : "Show Question Examples"}
           </Button>
-          <Button color="primary">Continue</Button>
+          <Button color="primary" onClick={() => handlePath(navigationPath)}>Continue</Button>
         </div>
       </Section>
     </SessionTemplate>
