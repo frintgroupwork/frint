@@ -10,7 +10,7 @@ export default function page() {
       ButtonQas2="Social Media"
       ButtonQas3="Google Search"
       ButtonQas4="News/blog"
-      nextPath="/preparation/"
+      nextPath="/introduction/step-1"
       backPath="/preparation/2"
     />
   );

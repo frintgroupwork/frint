@@ -1,10 +1,13 @@
-import QuizSection from '@/components/QuizSection'
-import QuizStarter from '@/components/QuizStarter'
+// import MultiTagDragDrop from '@/components/DragAndDrop'
+import ResourceTitle from '@/components/ResourceTitle'
 import React from 'react'
 
 export default function page() {
   return (
   //  <QuizSection/>
-    <QuizStarter/>
+  <>
+  <ResourceTitle/>
+  </>
+    // <MultiTagDragDrop/>
   )
 }

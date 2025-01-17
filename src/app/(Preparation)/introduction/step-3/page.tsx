@@ -13,7 +13,7 @@ export default function page() {
         tip2="Mission"
         tip3="Recent projects"
         example="I know that your company specializes in e-commerce platforms and recently launched an AI-driven feature for personalized shopping experiences. I’m impressed by your dedication to customer-centric innovation."
-        navigationPath="#"
+        navigationPath="/quiz"
       />
     </>
   );

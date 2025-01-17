@@ -1,9 +1,18 @@
+"use client"
 import React from "react";
 import Section from "./Section";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 export default function QuizStarter() {
+
+    const router = useRouter()
+
+    const handleNext = () =>{
+        router.push('/quiz/intro-quiz/step-1')
+      }
+
   return (
     <Section className="flex flex-row justify-between w-full h-screen bg-[#F1F1F1]">
       <div className="w-[55%] relative h-full max-sm:hidden bg-white rounded-2xl shadow-md">
@@ -61,7 +70,7 @@ export default function QuizStarter() {
             </p>
           </div>
           <div>
-            <Button variant="solid" color="primary" className="shadow-md">
+            <Button variant="solid" color="primary" className="shadow-md" onClick={handleNext}>
               Let’s go
             </Button>
           </div>
@@ -102,7 +111,7 @@ export default function QuizStarter() {
             </p>
           </div>
           <div className="pt-4">
-            <Button variant="solid" color="primary" className="shadow-md">
+            <Button variant="solid" color="primary" className="shadow-md" onClick={handleNext}>
               Let’s go
             </Button>
           </div>
