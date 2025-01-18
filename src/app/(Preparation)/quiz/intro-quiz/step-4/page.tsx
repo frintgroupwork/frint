@@ -1,4 +1,4 @@
-import QuizSection from "@/components/QuizSection";
+import QuizSection from "@/components/PreparationComps/QuizSection";
 import React from "react";
 
 function page() {
@@ -8,11 +8,12 @@ function page() {
         answersData={[
           { answer: "It helps to fill time during the interview." },
           {
-            answer:
-              "It proves that you can handle unrelated tasks.",
+            answer: "It proves that you can handle unrelated tasks.",
           },
           { answer: "It shows your ability to talk about yourself." },
-          { answer: "It demonstrates how your background aligns with the role." },
+          {
+            answer: "It demonstrates how your background aligns with the role.",
+          },
         ]}
         correctAnswerId={4}
         questionNumber={4}

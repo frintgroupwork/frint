@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "../Section";
+import Section from "../PreparationComps/Section";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import Image from "next/image";
 
@@ -47,9 +47,13 @@ const OurMission = () => {
         <div className="">
           <Card className="flex flex-row justify-between items-center gap-2 bg-[#1d4ed8] max-sm:flex-col py-4 mt-4 lg:py-8">
             <CardBody className="flex gap-2 mx-auto px-6">
-              <p className="text-white font-thin text-base opacity-80">TRY IT NOW</p>
+              <p className="text-white font-thin text-base opacity-80">
+                TRY IT NOW
+              </p>
               <div className="">
-                <p className="text-white font-medium text-2xl">Ready to level up your confidence during interviews.</p>
+                <p className="text-white font-medium text-2xl">
+                  Ready to level up your confidence during interviews.
+                </p>
                 <p className="text-white font-thin text-sm max-lg:text-xs opacity-80">
                   Explore and being well prepare of your interview to secure
                   your job
@@ -57,11 +61,21 @@ const OurMission = () => {
               </div>
             </CardBody>
             <CardBody className="flex flex-row justify-end gap-4 pr-6 max-sm:flex-col">
-                <Button className="bg-white text-[#1d4ed8] font-medium">Get Start Now</Button>
-                <Button variant="bordered" className="border-bg-white text-white font-medium px-4 hover:opacity-85">
-                    Learn More
-                    <Image src={"learnmore.svg"}width={20} height={20} alt="link"/>
-                </Button>
+              <Button className="bg-white text-[#1d4ed8] font-medium">
+                Get Start Now
+              </Button>
+              <Button
+                variant="bordered"
+                className="border-bg-white text-white font-medium px-4 hover:opacity-85"
+              >
+                Learn More
+                <Image
+                  src={"learnmore.svg"}
+                  width={20}
+                  height={20}
+                  alt="link"
+                />
+              </Button>
             </CardBody>
           </Card>
         </div>

@@ -1,4 +1,4 @@
-import QuizSection from "@/components/QuizSection";
+import QuizSection from "@/components/PreparationComps/QuizSection";
 import React from "react";
 
 function page() {
@@ -6,10 +6,12 @@ function page() {
     <>
       <QuizSection
         answersData={[
-          { answer: "To make a good impression and connect the role to your career aspirations." },
           {
             answer:
-              "To know what salary to negotiate for.",
+              "To make a good impression and connect the role to your career aspirations.",
+          },
+          {
+            answer: "To know what salary to negotiate for.",
           },
           { answer: "To find out if the company has free coffee." },
           { answer: "To memorize the company’s employee names." },

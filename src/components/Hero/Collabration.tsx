@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Section from "../Section";
+import Section from "../PreparationComps/Section";
 import Image from "next/image";
 
 const Collabration = () => {

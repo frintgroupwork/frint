@@ -1,13 +1,15 @@
 // import MultiTagDragDrop from '@/components/DragAndDrop'
-import ResourceTitle from '@/components/ResourceTitle'
-import React from 'react'
+import ResourceTitle from "@/components/ResourceComps/ResourceTitle";
+import RolenSkills from "@/components/ResourceComps/RolenSkills";
+import React from "react";
 
 export default function page() {
   return (
-  //  <QuizSection/>
-  <>
-  <ResourceTitle/>
-  </>
+    //  <QuizSection/>
+    <>
+      {/* <ResourceTitle/>
+  <RolenSkills/> */}
+    </>
     // <MultiTagDragDrop/>
-  )
+  );
 }

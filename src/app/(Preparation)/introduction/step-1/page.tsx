@@ -1,4 +1,4 @@
-import InterviewSession from "@/components/InterviewSession";
+import InterviewSession from "@/components/PreparationComps/InterviewSession";
 import React from "react";
 
 export default function page() {

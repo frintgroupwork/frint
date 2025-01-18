@@ -1,7 +1,7 @@
-import SessionStartPage from "@/components/SessionStartPage";
+import SessionStartPage from "@/components/PreparationComps/SessionStartPage";
 import React from "react";
 
-export default function page({children}:{children: React.ReactNode}) {
+export default function page({ children }: { children: React.ReactNode }) {
   return (
     <>
       {/* <SurveyQa
@@ -13,7 +13,7 @@ export default function page({children}:{children: React.ReactNode}) {
         progress={10}
       /> */}
 
-      <SessionStartPage/>
+      <SessionStartPage />
       {children}
     </>
   );

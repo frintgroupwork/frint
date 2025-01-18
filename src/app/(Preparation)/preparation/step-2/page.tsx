@@ -1,4 +1,4 @@
-import SurveyQa from "@/components/SurveyQa";
+import SurveyQa from "@/components/PreparationComps/SurveyQa";
 import React from "react";
 
 export default function page() {

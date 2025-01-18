@@ -1,4 +1,4 @@
-import Survey from "@/components/Survey";
+import Survey from "@/components/PreparationComps/Survey";
 import React from "react";
 
 function page() {

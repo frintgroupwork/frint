@@ -1,4 +1,4 @@
-import QuizSection from "@/components/QuizSection";
+import QuizSection from "@/components/PreparationComps/QuizSection";
 import React from "react";
 
 function page() {
@@ -6,7 +6,10 @@ function page() {
     <>
       <QuizSection
         answersData={[
-          { answer: "Emphasize how this role aligns with your skills and aspirations." },
+          {
+            answer:
+              "Emphasize how this role aligns with your skills and aspirations.",
+          },
           {
             answer:
               "Focus on what the company can do for you, like promotions or perks.",

@@ -125,29 +125,27 @@ const QuizSection: React.FC<QuizSectionProps> = ({
         </div>
       </div>
       <div className="block sm:hidden w-full h-screen">
-          <Image
-            alt="top-left"
-            src={"/quizbg/top-left.svg"}
-            width={60}
-            height={80}
-            className="absolute top-0 left-0 z-30"
-          />
-          <Image
-            alt="top-left"
-            src={"/quizbg/buttom-right.svg"}
-            width={200}
-            height={100}
-            className="absolute bottom-0 right-0"
-          />
-          <div className="flex flex-col justify-center items-center w-full h-screen">
-            <div className="bg-[#1d4ed8] absolute top-0 h-1/3 w-full flex justify-center items-center rounded-full rounded-t-none ">
-              <div className="w-[80%]">
-              <QuestionContent
-                question={question}
-              />
-              </div>
+        <Image
+          alt="top-left"
+          src={"/quizbg/top-left.svg"}
+          width={60}
+          height={80}
+          className="absolute top-0 left-0 z-30"
+        />
+        <Image
+          alt="top-left"
+          src={"/quizbg/buttom-right.svg"}
+          width={200}
+          height={100}
+          className="absolute bottom-0 right-0"
+        />
+        <div className="flex flex-col justify-center items-center w-full h-screen">
+          <div className="bg-[#1d4ed8] absolute top-0 h-1/3 w-full flex justify-center items-center rounded-full rounded-t-none ">
+            <div className="w-[80%]">
+              <QuestionContent question={question} />
             </div>
-            <div className="w-[90%] pt-32 flex flex-col gap-2">
+          </div>
+          <div className="w-[90%] pt-32 flex flex-col gap-2">
             {enhancedAnswersData.map((item) => (
               <div key={item.id} onClick={() => handleAnswerClick(item.id!)}>
                 <AnswerContent
@@ -156,17 +154,17 @@ const QuizSection: React.FC<QuizSectionProps> = ({
                 />
               </div>
             ))}
-              <Button
-                color="primary"
-                className="absolute max-sm:bottom-12 max-sm:right-14"
-                isDisabled={!isCorrect}
-                onPress={handleNext} // Trigger the handleNext function
-              >
-                Next Question
-              </Button>
-            </div>
+            <Button
+              color="primary"
+              className="absolute max-sm:bottom-12 max-sm:right-14"
+              isDisabled={!isCorrect}
+              onPress={handleNext} // Trigger the handleNext function
+            >
+              Next Question
+            </Button>
           </div>
         </div>
+      </div>
     </Section>
   );
 };

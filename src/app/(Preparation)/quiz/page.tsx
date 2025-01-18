@@ -1,14 +1,14 @@
-import QuizSection from '@/components/QuizSection'
-import QuizStarter from '@/components/QuizStarter'
-import React from 'react'
+import QuizSection from "@/components/PreparationComps/QuizSection";
+import QuizStarter from "@/components/PreparationComps/QuizStarter";
+import React from "react";
 
 function page() {
   return (
     <>
-        {/* <QuizSection/> */}
-        <QuizStarter/>
+      {/* <QuizSection/> */}
+      <QuizStarter />
     </>
-  )
+  );
 }
 
-export default page
+export default page;
