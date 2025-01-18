@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../../globals.css";
 import { Providers } from "../../Providers";
+import { Nav } from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ResourceTitle from "@/components/ResourceComps/ResourceTitle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   icons: "/frint_logo.svg",
-  title: "FRINT - introduction",
+  title: "FRINT - Resource",
   description: "Your confidence is our confidence.",
 };
 
@@ -27,10 +30,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F8F8F8]`}
       >
-        <div>
-          <Providers>{children}</Providers>
+        <div className="​flex flex-col justify-between min-h-screen ">
+          <Providers>
+            <div>
+              <Nav className="pt-5" />
+            </div>
+            <div className="flex-grow flex flex-col  items-center">
+              {children}
+            </div>
+            <div className="z-0">
+              <Footer />
+            </div>
+          </Providers>
         </div>
       </body>
     </html>

@@ -1,12 +1,12 @@
-import Authentication from '@/components/Authentication'
-import React from 'react'
+import Authentication from "@/components/PreparationComps/Authentication";
+import React from "react";
 
 function page() {
   return (
     <>
-      <Authentication isSignup/>
+      <Authentication isSignup />
     </>
-  )
+  );
 }
 
-export default page
+export default page;

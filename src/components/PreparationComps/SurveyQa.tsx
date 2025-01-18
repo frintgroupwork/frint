@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import BackgroundTemplate from "./BackgroundTemplate";
 import Section from "./Section";
@@ -71,25 +71,25 @@ const SurveyQa: React.FC<SurveyQaProps> = ({
             {Question}
           </div>
           <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2">
-            <ButtonQa 
+            <ButtonQa
               isSelected={selectedAnswer === ButtonQas1}
               onClick={() => handleSelection(ButtonQas1)}
             >
               {ButtonQas1}
             </ButtonQa>
-            <ButtonQa 
+            <ButtonQa
               isSelected={selectedAnswer === ButtonQas2}
               onClick={() => handleSelection(ButtonQas2)}
             >
               {ButtonQas2}
             </ButtonQa>
-            <ButtonQa 
+            <ButtonQa
               isSelected={selectedAnswer === ButtonQas3}
               onClick={() => handleSelection(ButtonQas3)}
             >
               {ButtonQas3}
             </ButtonQa>
-            <ButtonQa 
+            <ButtonQa
               isSelected={selectedAnswer === ButtonQas4}
               onClick={() => handleSelection(ButtonQas4)}
             >
@@ -97,13 +97,13 @@ const SurveyQa: React.FC<SurveyQaProps> = ({
             </ButtonQa>
           </div>
           <div className="flex flex-row justify-between">
-            <Button 
+            <Button
               className="bg-white shadow-md font-medium text-[#1d4ed8]"
               onClick={handleBack}
             >
               Back
             </Button>
-            <Button 
+            <Button
               color="primary"
               isDisabled={!selectedAnswer}
               onClick={handleContinue}

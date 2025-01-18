@@ -1,4 +1,4 @@
-import SurveyQa from "@/components/SurveyQa";
+import SurveyQa from "@/components/PreparationComps/SurveyQa";
 import React from "react";
 
 export default function page() {
@@ -10,7 +10,7 @@ export default function page() {
       ButtonQas2="Social Media"
       ButtonQas3="Google Search"
       ButtonQas4="News/blog"
-      nextPath="/preparation/"
+      nextPath="/introduction/step-1"
       backPath="/preparation/2"
     />
   );

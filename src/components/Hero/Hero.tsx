@@ -1,9 +1,16 @@
+"use client";
 import React from "react";
-import Section from "../Section";
+import Section from "../PreparationComps/Section";
 import { Button, Link } from "@nextui-org/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 function Hero() {
+  const router = useRouter();
+
+  const handleNavigation = () => {
+    router.push("/preparation");
+  };
   return (
     <>
       <Section className="flex flex-row w-[90%] items-center justify-between mx-auto py-5">
@@ -16,7 +23,9 @@ function Hero() {
             Explore and being well prepare of your interview to secure your job
           </p>
           <div className="flex gap-4">
-            <Button color="primary">Get Started</Button>
+            <Button color="primary" onClick={handleNavigation}>
+              Get Started
+            </Button>
             <Link
               isExternal
               showAnchorIcon

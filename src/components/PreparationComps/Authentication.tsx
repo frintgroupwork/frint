@@ -13,7 +13,7 @@ const Authentication = ({
   isLogin?: boolean;
   isSignup?: boolean;
 }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [password, setPassword] = React.useState("");
   const [submitted, setSubmitted] = React.useState<{
     [k: string]: FormDataEntryValue;
@@ -72,7 +72,7 @@ const Authentication = ({
     setSubmitted(data);
     if (submitted && submitted.email && submitted.password && isLogin) {
       // Handle success response
-      router.push('/')
+      router.push("/");
     }
   };
 
@@ -319,7 +319,12 @@ const Authentication = ({
                     </span>
                   )}
 
-                  <Button className="w-full" color="primary" type="submit" onClick={() => handleNavigation('/survey/step-1')}>
+                  <Button
+                    className="w-full"
+                    color="primary"
+                    type="submit"
+                    onClick={() => handleNavigation("/survey/step-1")}
+                  >
                     Sign up
                   </Button>
                 </div>

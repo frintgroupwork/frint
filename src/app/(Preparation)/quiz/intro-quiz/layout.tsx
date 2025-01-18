@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../../globals.css";
-import { Providers } from "../../Providers";
+import "../../../globals.css";
+import { Providers } from "../../../Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   icons: "/frint_logo.svg",
-  title: "FRINT - introduction",
+  title: "FRINT - introduction quiz",
   description: "Your confidence is our confidence.",
 };
 
@@ -25,14 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div>
-          <Providers>{children}</Providers>
-        </div>
-      </body>
-    </html>
+    <div>
+      <Providers>{children}</Providers>
+    </div>
   );
 }

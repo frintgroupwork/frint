@@ -1,11 +1,36 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import SessionTemplate from "./SessionTemplate";
+import SessionTemplate from "./PreparationComps/SessionTemplate";
 import { Progress, Button, Chip } from "@nextui-org/react";
-import Section from "./Section";
+import Section from "./PreparationComps/Section";
+import { useRouter } from "next/navigation";
 
-const InterviewSession = ({progress, step, main_question,des,tip1,tip2,tip3,example }:{progress: number, step: string,main_question: string,des: string, tip1: string, tip2: string, tip3:string, example: string}) => {
- 
+const InterviewSession = ({
+  progress,
+  step,
+  main_question,
+  des,
+  tip1,
+  tip2,
+  tip3,
+  example,
+  navigationPath,
+}: {
+  progress: number;
+  step: string;
+  main_question: string;
+  des: string;
+  tip1: string;
+  tip2: string;
+  tip3: string;
+  example: string;
+  navigationPath: string;
+}) => {
+  const router = useRouter();
+
+  const handlePath = (path: string) => {
+    router.push(path);
+  };
   const [showExample, setShowExample] = useState(false);
 
   return (
@@ -14,16 +39,18 @@ const InterviewSession = ({progress, step, main_question,des,tip1,tip2,tip3,exam
         <div className="hidden sm:block">
           <Progress value={progress} className="w-1/2 mx-auto" />
         </div>
-        <div className={`${showExample ? "mx-auto w-1/2 flex flex-col items-start gap-2 max-sm:hidden" : "mx-auto w-1/2 flex flex-col items-start gap-2 "}`}>
-          <p className="text-sm text-neutral-500">
-            {step}
-          </p>
+        <div
+          className={`${
+            showExample
+              ? "mx-auto w-1/2 flex flex-col items-start gap-2 max-sm:hidden"
+              : "mx-auto w-1/2 flex flex-col items-start gap-2 "
+          }`}
+        >
+          <p className="text-sm text-neutral-500">{step}</p>
           <p className="text-xl font-bold text-neutral-800 md:text-3xl">
             {main_question}
           </p>
-          <p className="text-base text-neutral-600">
-            {des}
-          </p>
+          <p className="text-base text-neutral-600">{des}</p>
           <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2 ">
             <Chip
               startContent={<IdeaIcon size={18} />}
@@ -57,19 +84,19 @@ const InterviewSession = ({progress, step, main_question,des,tip1,tip2,tip3,exam
             <p className="text-medium font-medium text-neutral-500 md:text-xl">
               Example Response
             </p>
-            <p className="text-sm text-neutral-500">
-              {example}
-            </p>
+            <p className="text-sm text-neutral-500">{example}</p>
           </div>
         )}
         <div className="flex flex-row justify-start gap-2 w-1/2 mx-auto max-sm:flex-col max-sm:mt-10">
-          <Button 
+          <Button
             className="bg-white shadow-md font-medium text-[#1d4ed8]"
             onClick={() => setShowExample(!showExample)} // Toggle example visibility
           >
             {showExample ? "Hide Question Examples" : "Show Question Examples"}
           </Button>
-          <Button color="primary">Continue</Button>
+          <Button color="primary" onClick={() => handlePath(navigationPath)}>
+            Continue
+          </Button>
         </div>
       </Section>
     </SessionTemplate>
