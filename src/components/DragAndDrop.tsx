@@ -1,55 +1,157 @@
-// "use client";
-// import React, { useState } from "react";
-// import { Card, CardBody, Button } from "@nextui-org/react";
-// import Image from "next/image";
+"use client";
+import React from "react";
+import Image from "next/image";
+import { useDragAndDrop } from "@formkit/drag-and-drop/react";
+import { Button } from "@nextui-org/react";
 
-// const MultiTagDragDrop = () => {
-//   return (
-//     <div className="w-full h-screen">
-//       <Image
-//         alt="top-left"
-//         src={"/quizbg/top-left2.svg"}
-//         width={100}
-//         height={80}
-//         className="absolute top-0 left-0 max-sm:hidden"
-//       />
-//       <Image
-//         alt="top-left"
-//         src={"/quizbg/buttom-left2.svg"}
-//         width={200}
-//         height={100}
-//         className="absolute bottom-0 -left-2 max-sm:hidden"
-//       />
-//       <Image
-//         alt="top-left"
-//         src={"/quizbg/top-right.svg"}
-//         width={200}
-//         height={100}
-//         className="absolute top-0 right-0 max-sm:hidden"
-//       />
-//       <div className="flex flex-col w-full  h-screen justify-center items-center">
-//         <Card className="">
-//           <CardBody className="flex flex-col gap-2">
-//             <h1 className="text-2xl font-bold text-[#1d4ed8] text-start">
-//               Drag-and-Drop Activity
-//             </h1>
-//             <p className="text-gray-600  text-start">
-//               Fill the correct key points of each question.
-//             </p>
-//             <div className="w-[80%]  flex flex-row justify-center items-start">
-//               <div className="w-1/2 h-1/2 bg-red-100 "></div>
-//               <div className="w-1/2 h-1/2 bg-red-400"></div>
-//               <div className="w-1/2 h-[300px] bg-red-200"></div>
-//             </div>
+export function DragAndDropActivity() {
+  const correctCategories = {
+    aboutYourself: ["Professional background", "Relevant experience", "Career goals"],
+    whyWorkWithUs: ["Role alignment", "Company research", "Enthusiasm"],
+    enthusiasm: ["Values", "Mission", "Recent projects"],
+  };
 
-//             <Button color="primary" className="absolute w-1/3 right-0 bottom-0">
-//               Next Question
-//             </Button>
-//           </CardBody>
-//         </Card>
-//       </div>
-//     </div>
-//   );
-// };
+  const initialItems = {
+    unassigned: [
+      "Company research",
+      "Relevant experience",
+      "Career goals",
+      "Mission",
+      "Recent projects",
+      "Values",
+      "Professional background",
+      "Role alignment",
+      "Enthusiasm"
 
-// export default MultiTagDragDrop;
+    ],
+    categories: {
+      aboutYourself: [],
+      whyWorkWithUs: [],
+      enthusiasm: [],
+    },
+  };
+
+  const isItemInCorrectCategory = (item: string, category: keyof typeof correctCategories) => {
+    return correctCategories[category].includes(item);
+  };
+
+  const getItemClassName = (item: string, category: keyof typeof correctCategories) => {
+    const baseClasses = "p-2 rounded-md shadow transition";
+    const correctClasses = "text-[#16A34A] bg-[#16A34A]/20 border-[#16A34A]/50";
+    const incorrectClasses = "text-[#BE123C] bg-[#BE123C]/20 border-[#BE123C]/50";
+
+    return `${baseClasses} ${
+      isItemInCorrectCategory(item, category) ? correctClasses : incorrectClasses
+    }`;
+  };
+
+  const [unassignedRef, unassignedItems] = useDragAndDrop<HTMLDivElement, string>(
+    initialItems.unassigned,
+    { group: "dragItems" }
+  );
+
+  const [aboutRef, aboutItems] = useDragAndDrop<HTMLDivElement, string>(
+    initialItems.categories.aboutYourself,
+    { group: "dragItems" }
+  );
+
+  const [whyWorkRef, whyWorkItems] = useDragAndDrop<HTMLDivElement, string>(
+    initialItems.categories.whyWorkWithUs,
+    { group: "dragItems" }
+  );
+
+  const [enthusiasmRef, enthusiasmItems] = useDragAndDrop<HTMLDivElement, string>(
+    initialItems.categories.enthusiasm,
+    { group: "dragItems" }
+  );
+
+  // Check if all items are correctly categorized and unassigned is empty
+  const allItemsCorrect = () => {
+    const categories = {
+      aboutYourself: aboutItems,
+      whyWorkWithUs: whyWorkItems,
+      enthusiasm: enthusiasmItems,
+    };
+
+    const allCategorizedCorrectly = Object.entries(categories).every(([category, items]) => {
+      return items.every((item) =>
+        isItemInCorrectCategory(item, category as keyof typeof correctCategories)
+      );
+    });
+
+    return unassignedItems.length === 0 && allCategorizedCorrectly;
+  };
+
+  return (
+    <div className="bg-gray-50 min-h-screen p-6 flex flex-col gap-6">
+      <div className="absolute top-0 left-0 max-sm:-top-14 max-sm:hidden">
+        <Image alt="top-left" src={"/prepare/top-left.svg"} height={150} width={200} />
+      </div>
+      <div className="absolute top-0 right-0 max-sm:-top-14 max-sm:hidden">
+        <Image alt="top-right" src={"/prepare/top-right.svg"} height={200} width={150} />
+      </div>
+      <h1 className="text-2xl font-bold text-center">Drag-and-Drop Activity</h1>
+      <p className="text-center text-gray-600">Fill the correct key points of each question.</p>
+
+      <div className="flex flex-col lg:flex-row gap-6 justify-center">
+        <div className="w-full lg:w-1/3 bg-white shadow-md rounded-lg p-4">
+          <h2 className="text-[#153899] bg-[#1d4ed8]/20 hover:bg-[#1d4ed8]/30 max-sm:text-sm text-center cursor-pointer backdrop:blur-md font-medium border-4 border-white/30 px-6 py-2 rounded-3xl transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-[0.98] mb-2">
+            Tell me about yourself.
+          </h2>
+          <div ref={aboutRef} className="border border-dashed border-gray-300 font-medium text-center p-4 rounded-lg min-h-[150px] space-y-2">
+            {aboutItems.map((item) => (
+              <div key={item} className={getItemClassName(item, "aboutYourself")}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full lg:w-1/3 bg-white shadow-md rounded-lg p-4">
+          <h2 className="text-[#153899] bg-[#1d4ed8]/20 hover:bg-[#1d4ed8]/30 max-sm:text-sm text-center cursor-pointer backdrop:blur-md font-medium border-4 border-white/30 px-6 py-2 rounded-3xl transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-[0.98] mb-2">
+            Why do you want to work with us?
+          </h2>
+          <div ref={whyWorkRef} className="border border-dashed border-gray-300 text-center font-medium p-4 rounded-lg min-h-[150px] space-y-2">
+            {whyWorkItems.map((item) => (
+              <div key={item} className={getItemClassName(item, "whyWorkWithUs")}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full lg:w-1/3 bg-white shadow-md rounded-lg p-4">
+          <h2 className="text-[#153899] bg-[#1d4ed8]/20 hover:bg-[#1d4ed8]/30 max-sm:text-sm text-center cursor-pointer backdrop:blur-md font-medium border-4 border-white/30 px-6 py-2 rounded-3xl transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-[0.98] mb-2">
+             Why do you want to work with us?
+          </h2>
+          <div ref={enthusiasmRef} className="border border-dashed border-gray-300 text-center font-medium p-4 rounded-lg min-h-[150px] space-y-2">
+            {enthusiasmItems.map((item) => (
+              <div key={item} className={getItemClassName(item, "enthusiasm")}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white shadow-md rounded-lg p-4">
+        <h2 className="text-lg font-semibold mb-4 text-gray-800">Drag items from here:</h2>
+        <div ref={unassignedRef} className="border border-dashed border-gray-300 p-4 rounded-lg min-h-[150px] flex flex-wrap gap-2">
+          {unassignedItems.map((item) => (
+            <div key={item} className="px-4 py-2 h-1/2 rounded-lg bg-yellow-400/20 text-[#EAB308] border-[4.5px] border-white/30">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Button
+        className="mt-4 text-white font-medium py-2 px-4 rounded-lg transition self-center"
+        color="primary"
+        isDisabled={!allItemsCorrect()}
+      >
+        Next Question
+      </Button>
+    </div>
+  );
+}

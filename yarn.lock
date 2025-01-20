@@ -145,6 +145,11 @@
   dependencies:
     tslib "2"
 
+"@formkit/drag-and-drop@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@formkit/drag-and-drop/-/drag-and-drop-0.3.3.tgz#5ad2477c1627b99d65f71d424d728aa2aceaea8a"
+  integrity sha512-/2o1ud4o6aw+du8KZcLwS3pKlGkwFLnVIIIcC/YI12XJ3J9Z5E1mpKz9thodzklNI9njUk54iyk7jZK2cE55Nw==
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@humanfs/core/-/core-0.19.1.tgz#17c55ca7d426733fe3c561906b8173c336b40a77"
