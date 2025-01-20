@@ -99,23 +99,7 @@ const Footer = () => {
             <h3 className="font-medium text-gray-900">Follow us on</h3>
             <div className="flex space-x-4">
               <Link
-                href="https://twitter.com"
-                className="text-gray-600 hover:text-gray-900"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaXTwitter className="w-6 h-6" />
-              </Link>
-              <Link
-                href="https://instagram.com"
-                className="text-gray-600 hover:text-gray-900"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram className="w-6 h-6" />
-              </Link>
-              <Link
-                href="https://t.me"
+                href="https://t.me/frint4interview"
                 className="text-gray-600 hover:text-gray-900"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -123,7 +107,7 @@ const Footer = () => {
                 <FaTelegram className="w-6 h-6" />
               </Link>
               <Link
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61569987186093"
                 className="text-gray-600 hover:text-gray-900"
                 target="_blank"
                 rel="noopener noreferrer"

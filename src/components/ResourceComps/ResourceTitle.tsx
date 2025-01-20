@@ -30,9 +30,9 @@ export default function ResourceTitle() {
             in Cambodia
           </span>{" "}
         </p>
-        <div className="flex max-sm:w-1/2 flex-row gap-6 items-end max-sm:flex-col">
-          <div className="flex flex-col items-center">
-            <p className="font-medium text-3xl sm:text-4x text-[#1d4ed8]">6</p>
+        <div className="flex max-sm:w-1/2 flex-row gap-6 items-end max-sm:flex-col ">
+          <div className="flex flex-col sm:items-end md:items-center">
+            <p className="font-medium text-3xl sm:text-4x text-[#1d4ed8] ">6</p>
             <p className="text-neutral-500">Job Families</p>
           </div>
           <div className="flex flex-col items-center">
