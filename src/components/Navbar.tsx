@@ -27,18 +27,18 @@ export const Nav = ({ className }: { className?: string }) => {
           justify="center"
         >
           <NavbarItem isActive>
-            <Link color="primary" href="#">
+            <Link color="foreground" href="/">
               Home
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" href="#">
+            <Link color="foreground" href="/resource">
               Resources
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" href="#">
-              About
+            <Link color="foreground" href="/about-us">
+              About Us
             </Link>
           </NavbarItem>
           <NavbarItem>
@@ -46,7 +46,11 @@ export const Nav = ({ className }: { className?: string }) => {
               Blogs
             </Link>
           </NavbarItem>
-          Contact
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              Contact Us
+            </Link>
+          </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
