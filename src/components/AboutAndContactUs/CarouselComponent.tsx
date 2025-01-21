@@ -14,13 +14,13 @@ const CarouselComponent = () => {
   const activities = [
     {
       src: "/about-us/activity1.svg",
-      title: "Team Meeting",
-      description: "Frontend Development Discussion"
+      title: "CM2 Meeting",
+      description: "Workplan and Budget plan Discussion"
     },
     {
       src: "/about-us/activity2.svg",
-      title: "Workshop",
-      description: "UI/UX Design Workshop"
+      title: "User Research Activity",
+      description: "Project Research of Qualitative data"
     },
     {
       src: "/about-us/activity3.svg",
@@ -28,10 +28,35 @@ const CarouselComponent = () => {
       description: "Project Development Training"
     },
     {
-      src: "/about-us/activity1.svg",
-      title: "Training",
+      src: "/about-us/activity4.svg",
+      title: "Problem Identify",
+      description: "Problem Identify Discussion"
+    },
+    {
+      src: "/about-us/activity5.svg",
+      title: "Christmas",
+      description: "Gift Exchange Party"
+    },
+    {
+      src: "/about-us/activity6.svg",
+      title: "CM2 Training",
       description: "Project Development Training"
-    }
+    },
+    {
+      src: "/about-us/activity7.svg",
+      title: "CM2 Training",
+      description: "Project Development Training"
+    },
+    {
+      src: "/about-us/activity8.svg",
+      title: "CM2 Training",
+      description: "Project Development Training"
+    },
+    {
+      src: "/about-us/activity9.svg",
+      title: "CM1 Training",
+      description: "Project Development Training"
+    },
   ];
 
   return (

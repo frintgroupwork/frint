@@ -9,9 +9,9 @@ import ContactUs from "@/components/AboutAndContactUs/Contact";
 function page() {
   return (
     <>
-      {/* <ResourceTitle /> */}
-      {/* <ResourcePage/> */}
-      <ContactUs/>
+      
+      <ResourcePage/>
+      {/* <ContactUs/> */}
       {/* <DragAndDropActivity/> */}
       {/* <RolenSkills /> */}
     </>
