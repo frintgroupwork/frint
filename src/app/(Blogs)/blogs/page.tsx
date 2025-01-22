@@ -23,7 +23,7 @@ export default function page() {
           />
         </div>
 
-        <div className="w-[80%] mx-auto pb-4 flex justify-center items-center">
+        <div className="w-[80%] mx-auto pb-4 flex justify-center items-centers">
         <Pagination initialPage={1} total={10} />
         </div>
       </Section>

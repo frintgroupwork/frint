@@ -1,13 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BackgroundTemplate from "./BackgroundTemplate";
 import Section from "./Section";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import SessionStartSkeleton from "../Skeleton";
 
 const SessionStartPage = () => {
   const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time or check for actual data loading
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Shows skeleton for 1 second
+  }, []);
+
+  if (isLoading) {
+    return <SessionStartSkeleton />;
+  }
 
   const handleNext = () => {
     router.push("/preparation/step-1");
