@@ -1,4 +1,3 @@
-import InterviewSession from "@/components/InterviewSession";
 import SurveyQa from "@/components/PreparationComps/SurveyQa";
 import React from "react";
 
@@ -6,7 +5,7 @@ export default function page() {
   return (
     <>
       <SurveyQa
-        progress={30}
+        progress={5.88}
         Question="What is your field of study?"
         ButtonQas1="Computer Science"
         ButtonQas2="Software Engineering"

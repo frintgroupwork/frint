@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
-import SessionTemplate from "./PreparationComps/SessionTemplate";
+import React, { useState, useEffect } from "react";
 import { Progress, Button, Chip } from "@nextui-org/react";
-import Section from "./PreparationComps/Section";
 import { useRouter } from "next/navigation";
+import SessionTemplate from "./SessionTemplate";
+import Section from "./Section";
+import Link from "next/link";
 
 const InterviewSession = ({
   progress,
@@ -15,6 +16,7 @@ const InterviewSession = ({
   tip3,
   example,
   navigationPath,
+  backPath,
 }: {
   progress: number;
   step: string;
@@ -25,33 +27,112 @@ const InterviewSession = ({
   tip3: string;
   example: string;
   navigationPath: string;
+  backPath: string;
 }) => {
   const router = useRouter();
+  const [showExample, setShowExample] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // Delay rendering the main component by 0.5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer); // Cleanup the timer on unmount
+  }, []);
 
   const handlePath = (path: string) => {
     router.push(path);
   };
-  const [showExample, setShowExample] = useState(false);
+
+  // const handleBackPath = (path: string) => {
+  //   router.push(path);
+  // };
+
+  // const handleBack = () => {
+  //   // If onBack callback is provided, call it
+  //   if (onBack) {
+  //     onBack();
+  //   }
+  //   // If backPath is provided, navigate to it
+  //   if (backPath) {
+  //     router.push(backPath);
+  //   }
+  // };
+
+  if (loading) {
+    // Skeleton state
+    return (
+      <SessionTemplate>
+        <Section className="w-full h-screen flex flex-col justify-evenly items-center gap-4 bg-gray-50 animate-pulse">
+          {/* Progress Bar Skeleton */}
+          <div className="hidden sm:block w-1/2 h-4 bg-gray-200 rounded" />
+
+          {/* Main Content Skeleton */}
+          <div className="mx-auto w-1/2 flex flex-col gap-4">
+            <div className="h-4 w-24 bg-gray-200 rounded" />
+            <div className="h-8 w-3/4 bg-gray-200 rounded" />
+            <div className="h-6 w-full bg-gray-200 rounded" />
+            <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2">
+              <div className="h-8 w-full bg-gray-200 rounded" />
+              <div className="h-8 w-full bg-gray-200 rounded" />
+              <div className="h-8 w-full bg-gray-200 rounded" />
+            </div>
+          </div>
+
+          {/* Example Section Skeleton */}
+          <div className="w-1/2 mx-auto flex flex-col gap-4">
+            <div className="h-6 w-1/4 bg-gray-200 rounded" />
+            <div className="h-4 w-full bg-gray-200 rounded" />
+          </div>
+
+          {/* Buttons Skeleton */}
+          <div className="flex flex-row justify-start gap-4 w-1/2 mx-auto max-sm:flex-col">
+            <div className="h-10 w-40 bg-gray-200 rounded" />
+            <div className="h-10 w-40 bg-gray-200 rounded" />
+          </div>
+        </Section>
+      </SessionTemplate>
+    );
+  }
 
   return (
     <SessionTemplate>
       <Section className="w-full h-screen flex flex-col justify-evenly max-sm:justify-center gap-2">
-        <div className="hidden sm:block">
+        <div className="hidden sm:block ">
           <Progress value={progress} className="w-1/2 mx-auto" />
         </div>
         <div
           className={`${
             showExample
               ? "mx-auto w-1/2 flex flex-col items-start gap-2 max-sm:hidden"
-              : "mx-auto w-1/2 flex flex-col items-start gap-2 "
+              : "mx-auto w-1/2 flex flex-col items-start gap-2"
           }`}
         >
-          <p className="text-sm text-neutral-500">{step}</p>
+          <p className="text-sm text-neutral-500 flex flex-row justify-center items-center gap-2">
+            <Link
+              className="text-[#1d4ed8] font-medium underline flex flex-row justify-center gap-2 items-center"
+              href={`${backPath}`}
+            >
+               <svg
+              width="14"
+              height="14"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.33325 16L4.62615 15.2929L3.91904 16L4.62615 16.7071L5.33325 16ZM25.3333 17C25.8855 17 26.3333 16.5523 26.3333 16C26.3333 15.4477 25.8855 15 25.3333 15V17ZM12.6261 7.29289L4.62615 15.2929L6.04036 16.7071L14.0404 8.70711L12.6261 7.29289ZM4.62615 16.7071L12.6261 24.7071L14.0404 23.2929L6.04036 15.2929L4.62615 16.7071ZM5.33325 17H25.3333V15H5.33325V17Z"
+                fill="#0F172A"
+              />
+            </svg>
+              {step}{" "}
+            </Link>
+            of 14
+          </p>
           <p className="text-xl font-bold text-neutral-800 md:text-3xl">
             {main_question}
           </p>
           <p className="text-base text-neutral-600">{des}</p>
-          <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2 ">
+          <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2">
             <Chip
               startContent={<IdeaIcon size={18} />}
               variant="flat"
