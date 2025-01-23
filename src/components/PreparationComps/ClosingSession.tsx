@@ -2,36 +2,26 @@
 import React, { useState, useEffect } from "react";
 import { Progress, Button, Chip } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import SessionTemplate from "./SessionTemplate";
-import Section from "./Section";
 import Link from "next/link";
+import SessionTemplate from "@/components/PreparationComps/SessionTemplate";
+import Section from "./Section";
+import CongratulationsModal from "./ClosingModal";
 
-const InterviewSession = ({
-  progress,
-  step,
-  main_question,
-  des,
-  tip1,
-  tip2,
-  tip3,
-  example,
-  navigationPath,
-  backPath,
-}: {
-  progress: number;
-  step: string;
-  main_question: string;
-  des: string;
-  tip1: string;
-  tip2: string;
-  tip3: string;
-  example: string;
-  navigationPath: string;
-  backPath: string;
-}) => {
+const ClosingSession = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const [showExample, setShowExample] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const handleContinueQuiz = () => {
+    // Navigate to quiz page
+    router.push("/quiz");
+  };
+
+  const handleSkipQuiz = () => {
+    // Navigate to next section or dashboard
+    router.push("/");
+  };
 
   // Delay rendering the main component by 0.5 seconds
   useEffect(() => {
@@ -42,7 +32,6 @@ const InterviewSession = ({
   const handlePath = (path: string) => {
     router.push(path);
   };
-
 
   if (loading) {
     // Skeleton state
@@ -84,7 +73,7 @@ const InterviewSession = ({
     <SessionTemplate>
       <Section className="w-full h-screen flex flex-col justify-evenly max-sm:justify-center gap-2">
         <div className="hidden sm:block ">
-          <Progress value={progress} className="w-1/2 mx-auto" />
+          <Progress value={95} className="w-1/2 mx-auto" />
         </div>
         <div
           className={`${
@@ -96,28 +85,32 @@ const InterviewSession = ({
           <p className="text-sm text-neutral-500 flex flex-row justify-center items-center gap-2">
             <Link
               className="text-[#1d4ed8] font-medium underline flex flex-row justify-center gap-2 items-center"
-              href={`${backPath}`}
+              href={`${"backPath"}`}
             >
-               <svg
-              width="14"
-              height="14"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5.33325 16L4.62615 15.2929L3.91904 16L4.62615 16.7071L5.33325 16ZM25.3333 17C25.8855 17 26.3333 16.5523 26.3333 16C26.3333 15.4477 25.8855 15 25.3333 15V17ZM12.6261 7.29289L4.62615 15.2929L6.04036 16.7071L14.0404 8.70711L12.6261 7.29289ZM4.62615 16.7071L12.6261 24.7071L14.0404 23.2929L6.04036 15.2929L4.62615 16.7071ZM5.33325 17H25.3333V15H5.33325V17Z"
-                fill="#0F172A"
-              />
-            </svg>
-              {step}{" "}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.33325 16L4.62615 15.2929L3.91904 16L4.62615 16.7071L5.33325 16ZM25.3333 17C25.8855 17 26.3333 16.5523 26.3333 16C26.3333 15.4477 25.8855 15 25.3333 15V17ZM12.6261 7.29289L4.62615 15.2929L6.04036 16.7071L14.0404 8.70711L12.6261 7.29289ZM4.62615 16.7071L12.6261 24.7071L14.0404 23.2929L6.04036 15.2929L4.62615 16.7071ZM5.33325 17H25.3333V15H5.33325V17Z"
+                  fill="#0F172A"
+                />
+              </svg>
+              {"Final Question"}{" "}
             </Link>
             of 14
           </p>
           <p className="text-xl font-bold text-neutral-800 md:text-3xl">
-            {main_question}
+            {"Do you have any questions for us?"}
           </p>
-          <p className="text-base text-neutral-600">{des}</p>
+          <p className="text-base text-neutral-600">
+            {
+              "Ask thoughtful questions about the role, team culture, or company values."
+            }
+          </p>
           <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2">
             <Chip
               startContent={<IdeaIcon size={18} />}
@@ -125,7 +118,7 @@ const InterviewSession = ({
               color="warning"
               className="text-amber-500"
             >
-              {tip1}
+              {"Role"}
             </Chip>
             <Chip
               startContent={<IdeaIcon size={18} />}
@@ -133,7 +126,7 @@ const InterviewSession = ({
               color="warning"
               className="text-amber-500"
             >
-              {tip2}
+              {"Team culture"}
             </Chip>
             <Chip
               startContent={<IdeaIcon size={18} />}
@@ -141,17 +134,40 @@ const InterviewSession = ({
               color="warning"
               className="text-amber-500"
             >
-              {tip3}
+              {"Opportunities"}
             </Chip>
           </div>
         </div>
         {/* Show Example - Only render when showExample is true */}
         {showExample && (
-          <div className="flex flex-col w-1/2 mx-auto justify-start">
+          <div className="flex flex-col w-1/2 mx-auto justify-start gap-2">
             <p className="text-medium font-medium text-neutral-500 md:text-xl">
-              Example Response
+              Example Questions that support to me ask them
             </p>
-            <p className="text-sm text-neutral-500">{example}</p>
+            <Chip
+              variant="flat"
+              color="primary"
+              style={{ fontWeight: 600 }}
+              className="text-blue-900 font-semibold"
+            >
+              “What does success look like in this role?”
+            </Chip>
+            <Chip
+              variant="flat"
+              color="primary"
+              style={{ fontWeight: 600 }}
+              className="text-blue-900 font-semibold"
+            >
+              “Can you describe the team I’ll be working with?”
+            </Chip>
+            <Chip
+              variant="flat"
+              color="primary"
+              style={{ fontWeight: 600 }}
+              className="text-blue-900 font-semibold"
+            >
+              “What opportunities for growth and learning are available here?”
+            </Chip>
           </div>
         )}
         <div className="flex flex-row justify-start gap-2 w-1/2 mx-auto max-sm:flex-col max-sm:mt-10">
@@ -161,16 +177,29 @@ const InterviewSession = ({
           >
             {showExample ? "Hide Question Examples" : "Show Question Examples"}
           </Button>
-          <Button color="primary" onClick={() => handlePath(navigationPath)}>
+          <Button
+            color="primary"
+            onClick={() => {
+              setIsModalOpen(true);
+              handlePath("#");
+            }}
+          >
             Continue
           </Button>
+
+          <CongratulationsModal
+            isOpen={isModalOpen}
+            onOpenChange={setIsModalOpen}
+            onContinueQuiz={handleContinueQuiz}
+            onSkipQuiz={handleSkipQuiz}
+          />
         </div>
       </Section>
     </SessionTemplate>
   );
 };
 
-export default InterviewSession;
+export default ClosingSession;
 
 export const IdeaIcon = ({
   size,

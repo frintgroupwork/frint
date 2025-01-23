@@ -5,16 +5,16 @@ export default function page() {
   return (
     <>
       <InterviewSession
-        step="Technical and Hard Skill Questions 4"
-        main_question="Can you walk us through a project you’ve worked on that you’re proud of?"
-        des="They want to see how you solve problems and deliver results. Choose a project where you made a real impact, and explain your role and its outcomes."
-        progress={5.88 * 7}
-        tip1="Problem-solving"
-        tip2="Role and tools"
-        tip3="Outcomes"
-        example="I worked on a portfolio website project for a local artist. They needed an online presence to showcase their work. I used React and Tailwind CSS to create a responsive and visually appealing design, and incorporated a dynamic gallery feature. The site increased their reach and helped them secure new clients."
-        navigationPath="/evaluating-skills/step-2"
-        backPath="/evaluating-skills/step-1"
+        step="Professionalism and First Impressions 12"
+        main_question="Why should we hire you over other candidates?"
+        des="This is your chance to stand out. Highlight your unique strengths, enthusiasm, and how you can bring value to the team."
+        progress={80}
+        tip1="Unique strengths"
+        tip2="Enthusiasm"
+        tip3="Value"
+        example="I bring a combination of technical skills and a proactive attitude. My experience in building responsive web applications, along with my eagerness to contribute to innovative projects, makes me a great fit for this role."
+        navigationPath="/professionalism/step-2"
+        backPath="/problem-solving/step-4"
       />
     </>
   );

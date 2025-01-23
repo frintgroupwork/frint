@@ -22,7 +22,7 @@ function page() {
         questionNumber={6}
         totalQuestions={6}
         question={`How can you effectively demonstrate your interest in a company during an interview?`}
-        nextPath="#"
+        nextPath="/quiz/intro-quiz/final-step"
       />
     </>
   );
