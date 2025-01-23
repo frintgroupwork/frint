@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FRINT
 
-## Getting Started
+## Project Mission
 
-First, run the development server:
+At FRINT, our mission is to make interviews less stressful and more successful for students and job seekers. We are committed to empowering individuals with the skills, confidence, and resources they need to overcome challenges, face interviews with self-assurance, and achieve their career goals.
 
+## Technology Stack
+
+- **Frontend**: 
+  - Next.js
+  - Tailwind CSS
+  - TypeScript (TSX)
+
+- **Backend**: 
+  - Laravel (Backpack framework)
+
+## Prerequisites
+
+- Node.js (latest LTS version)
+- PHP 8.1+
+- Composer
+- npm or yarn
+
+## Installation
+
+### Frontend Setup
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/frint.git
+
+# Navigate to frontend directory
+cd frint/frontend
+
+# Install dependencies
+npm install
+# or
+yarn install
+
+# Run development server
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend Setup
+```bash
+# Navigate to backend directory
+cd ../backend
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Install PHP dependencies
+composer install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Set up environment configuration
+cp .env.example .env
 
-## Learn More
+# Generate application key
+php artisan key:generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Ensure you have the latest versions of Node.js and PHP installed
+- Follow coding standards specified in project guidelines
+- Use meaningful commit messages
+- Create feature branches for new developments
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+[Add your license information here]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Address: #12, Street 2001, Phum Paprek Khang Tboung, Sangkat Kakab, Khan Porsenchey, Phnom Penh, Cambodia
+Phone: +855 78 974 850
+Email: frint.groupwork@gmail.com
