@@ -5,7 +5,7 @@ export default function page() {
   return (
     <>
       <SurveyQa
-        progress={60}
+        progress={5.88*2}
         Question="How many jobs or internship’s Interview have you attended?"
         ButtonQas1="None"
         ButtonQas2="1-3"

@@ -4,7 +4,7 @@ import React from "react";
 export default function page() {
   return (
     <SurveyQa
-      progress={90}
+      progress={5.88*3}
       Question="How did you hear about FRINT?"
       ButtonQas1="Friend/Family"
       ButtonQas2="Social Media"

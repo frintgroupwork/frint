@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   icons: "frint_logo.svg",
-  title: "FRINT - About Us",
+  title: "FRINT - Contact Us",
   description: "Your confidence is our confidence.",
 };
 

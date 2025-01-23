@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 import { Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import CongratulationModal from "./CongrateDragAndDrop";
 
 export function DragAndDropActivity() {
   const correctCategories = {
@@ -29,6 +31,14 @@ export function DragAndDropActivity() {
       whyWorkWithUs: [],
       enthusiasm: [],
     },
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+
+  const handleContinue = () => {
+    // Navigate to next page
+    router.push("/");
   };
 
   const isItemInCorrectCategory = (item: string, category: keyof typeof correctCategories) => {
@@ -149,9 +159,16 @@ export function DragAndDropActivity() {
         className="mt-4 text-white font-medium py-2 px-4 rounded-lg transition self-center"
         color="primary"
         isDisabled={!allItemsCorrect()}
+        onPress={() => setIsModalOpen(true)}
       >
         Next Question
       </Button>
+
+      <CongratulationModal 
+        isOpen={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onContinue={handleContinue}
+      />
     </div>
   );
 }
