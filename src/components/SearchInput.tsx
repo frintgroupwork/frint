@@ -1,7 +1,7 @@
 import { Input } from "@nextui-org/react";
 
 
-export const SearchIcon = (props: any) => {
+export const SearchIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       aria-hidden="true"

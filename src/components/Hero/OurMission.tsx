@@ -12,7 +12,7 @@ const OurMission = () => {
             Our mission
           </p>
           <p className="text-3xl font-medium text-neutral-800 max-lg:text-2xl text-center">
-            We'll help IT students
+            We&apos;ll help IT students
           </p>
           <p className="text-lg text-neutral-600 max-lg:text-sm text-center">
             Prepare for the interview, gain their confidence, and utilize tips

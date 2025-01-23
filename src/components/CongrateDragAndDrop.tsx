@@ -31,7 +31,7 @@ const CongratulationModal: React.FC<CongratulationModalProps> = ({
           </ModalHeader>
           <ModalBody>
             <p className="text-neutral-600">
-              You've successfully categorized all the key points for the interview questions. 
+              You&apos;ve successfully categorized all the key points for the interview questions. 
               Your strategic thinking and attention to detail will help you shine in your interview preparation.
             </p>
           </ModalBody>

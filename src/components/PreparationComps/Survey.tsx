@@ -8,9 +8,8 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 
 const Survey = ({
   IsQa1,
@@ -275,7 +274,7 @@ const Survey = ({
                   isDisabled={!selectedInterview}
                   onClick={() => handleNavigation("/")}
                 >
-                  Let's go
+                  Let&apos;s go
                 </Button>
               </div>
             </div>

@@ -33,7 +33,7 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
           </ModalHeader>
           <ModalBody>
             <p className="text-neutral-600 mb-4">
-              You've successfully completed the interview preparation session. 
+              You&apos;ve successfully completed the interview preparation session. 
               Would you like to test your knowledge with a quick quiz?
             </p>
           </ModalBody>

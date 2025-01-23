@@ -25,7 +25,7 @@ export default function ContactUs() {
         <div className="flex flex-col gap-2 sm:absolute inset-0 justify-center items-center">
           <h1 className="text-2xl font-semibold">Contact Us</h1>
           <p className="w-1/2 mx-auto text-center max-sm:w-full max-sm:text-start  text-neutral-600">
-            Have questions about FRINT? We're here to help! Reach out to us through any of the channels below.
+            Have questions about FRINT? We&apos;re here to help! Reach out to us through any of the channels below.
           </p>
         </div>
       </div>

@@ -32,7 +32,7 @@ const SessionStartPage = () => {
         <div className="flex flex-col justify-start gap-2 ">
           <p className="text-sm text-neutral-400">Before we start the party </p>
           <p className="text-2xl w-[90%] max-sm:w-full text-neutral-800 font-medium">
-            Let's get to know each other first!
+            Let&apos;s get to know each other first!
           </p>
           <Button
             color="primary"
