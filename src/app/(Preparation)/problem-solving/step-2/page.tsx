@@ -13,7 +13,7 @@ export default function page() {
         tip2="Lesson learned"
         tip3="Improvement"
         example="  “In one project, I underestimated the time needed to test a feature, which caused a delay. Since then, I’ve adopted better time management practices, including allocating buffer time for unexpected challenges.”"
-        navigationPath="/problem-solving/step-2"
+        navigationPath="/problem-solving/step-3"
         backPath="/problem-solving/step-1"
       />
     </>
