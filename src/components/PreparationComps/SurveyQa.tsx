@@ -5,7 +5,6 @@ import Section from "./Section";
 import ButtonQa from "./ButtonQa";
 import { Button, Progress } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 interface SurveyQaProps {
   Question: string;

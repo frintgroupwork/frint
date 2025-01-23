@@ -8,6 +8,21 @@ import AnswerContent from "./AnswerContent";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
+ type QuizSectionProps = {
+    answersData: Answer[];
+    correctAnswerId: number;
+    questionNumber: number;
+    totalQuestions: number;
+    question: string;
+    nextPath: string;
+  };
+
+  type Answer = {
+    id?: number;
+    answer: string;
+  };
+  
+
 const QuizSection: React.FC<QuizSectionProps> = ({
   answersData,
   correctAnswerId,

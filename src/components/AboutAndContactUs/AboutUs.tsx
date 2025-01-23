@@ -3,7 +3,6 @@ import { Card, CardFooter } from "@nextui-org/react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { AccordionItem } from "./AccordionItem";
-import Carousel from "react-multi-carousel";
 import CarouselComponent from "./CarouselComponent";
 
 export default function AboutUs() {
@@ -102,16 +101,16 @@ export default function AboutUs() {
       ],
     },
   ];
-  interface FaqItem {
-    key: string;
-    question: string;
-    answer: string;
-  }
+  // interface FaqItem {
+  //   key: string;
+  //   question: string;
+  //   answer: string;
+  // }
 
-  interface FaqCategory {
-    category: string;
-    items: FaqItem[];
-  }
+  // interface FaqCategory {
+  //   category: string;
+  //   items: FaqItem[];
+  // }
 
   interface OpenItems {
     [key: string]: boolean;

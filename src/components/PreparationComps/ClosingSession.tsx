@@ -205,12 +205,10 @@ export const IdeaIcon = ({
   size,
   height,
   width,
-  ...props
 }: {
   size?: number;
   height?: number;
   width?: number;
-  [key: string]: any;
 }) => {
   return (
     <svg
@@ -219,7 +217,6 @@ export const IdeaIcon = ({
       viewBox="0 0 24 24"
       width={size || width || 24}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
     >
       <path
         fillRule="evenodd"

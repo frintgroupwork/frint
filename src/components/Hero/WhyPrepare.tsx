@@ -27,7 +27,7 @@ const WhyPrepare = () => {
                 <p className="text-start">
                   Preparing thoroughly can greatly improve your chances of
                   success in an interview. practice answering common questions,
-                  and make use of helpful resources, you'll feel more confident
+                  and make use of helpful resources, you&apos;ll feel more confident
                   and perform at your best.
                 </p>
               </div>

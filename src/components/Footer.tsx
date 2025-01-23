@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaFacebook, FaTelegram } from 'react-icons/fa';
-import { FaXTwitter, FaInstagram } from 'react-icons/fa6';
 
 const Footer = () => {
   return (

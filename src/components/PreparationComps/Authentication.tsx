@@ -6,13 +6,7 @@ import { Form, Input, Checkbox, Button } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const Authentication = ({
-  isLogin,
-  isSignup,
-}: {
-  isLogin?: boolean;
-  isSignup?: boolean;
-}) => {
+const Authentication = ({ isLogin }: { isLogin?: boolean }) => {
   const router = useRouter();
   const [password, setPassword] = React.useState("");
   const [submitted, setSubmitted] = React.useState<{
@@ -172,12 +166,12 @@ const Authentication = ({
                       label: "text-small",
                     }}
                     isInvalid={!!errors.terms}
-                    name="terms"
+                    // name="terms"
                     validationBehavior="aria"
                     value="true"
                     onValueChange={() =>
                       setErrors((prev) => {
-                        const { terms, ...rest } = prev;
+                        const { ...rest } = prev;
                         return rest;
                       })
                     }
@@ -298,17 +292,17 @@ const Authentication = ({
                       label: "text-small",
                     }}
                     isInvalid={!!errors.terms}
-                    name="terms"
+                    // name="terms"
                     validationBehavior="aria"
                     value="true"
                     onValueChange={() =>
                       setErrors((prev) => {
-                        const { terms, ...rest } = prev;
+                        const {...rest } = prev;
                         return rest;
                       })
                     }
                   >
-                    I agree to FRINT's{" "}
+                    I agree to FRINT&apos;s{" "}
                     <span className="text-[#1d4ed8]">Term of Service</span> and{" "}
                     <span className="text-[#1d4ed8]">Privacy Policy</span>.
                   </Checkbox>
