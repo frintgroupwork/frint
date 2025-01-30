@@ -3,8 +3,8 @@ import React from "react";
 
 const BackgroundTemplate = ({children}:{children: React.ReactNode}) => {
   return (
-      <div className="template relative w-full h-full">
-        <div className="absolute top-0 left-0 ">
+      <div className="template relative w-full h-screen">
+        {/* <div className="absolute top-0 left-0 ">
           <Image
             alt="top-left"
             src={"/prepare/top-left.svg"}
@@ -19,8 +19,8 @@ const BackgroundTemplate = ({children}:{children: React.ReactNode}) => {
             height={200}
             width={150}
           />{" "}
-        </div>
-        <div className="absolute bottom-0 left-0">
+        </div> */}
+        {/* <div className="absolute bottom-0 left-0">
           <Image
             alt="buttom-left"
             src={"/prepare/bottom-left.svg"}
@@ -35,8 +35,8 @@ const BackgroundTemplate = ({children}:{children: React.ReactNode}) => {
             height={100}
             width={80}
           />{" "}
-        </div>
-        <div className="flex flex-col justify-center items-center w-full h-screen z-10">
+        </div> */}
+        <div className="flex flex-col w-full z-10">
           {children}
         </div>
       </div>

@@ -28,7 +28,7 @@ const SessionStartPage = () => {
   };
   return (
     <BackgroundTemplate>
-      <Section className="flex flex-row justify-between items-center ">
+      <Section className="flex flex-row w-1/2 mx-auto justify-center pt-20 items-center ">
         <div className="flex flex-col justify-start gap-2 ">
           <p className="text-sm text-neutral-400">Before we start the party </p>
           <p className="text-2xl w-[90%] max-sm:w-full text-neutral-800 font-medium">

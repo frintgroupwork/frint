@@ -15,7 +15,7 @@ export default function QuizStarter() {
 
   return (
     <Section className="flex flex-row justify-between w-full h-screen bg-[#F1F1F1]">
-      <div className="w-[55%] relative h-full max-sm:hidden bg-white rounded-2xl shadow-md">
+      <div className="w-[55%]  relative h-full max-sm:hidden bg-white rounded-2xl shadow-md">
         <Image
           alt="top-left"
           src={"quizbg/top-left2.svg"}
@@ -36,7 +36,7 @@ export default function QuizStarter() {
               Quizz Time!
             </p>
             <p className="text-neutral-500">
-              Get ready to have fun and test your knowledge—it’s all about
+              Get ready to have fun and test your knowledge—it's all about
               learning, not measuring!
             </p>
             <Image

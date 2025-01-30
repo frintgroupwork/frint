@@ -34,7 +34,7 @@ export const Nav = ({ className }: { className?: string }) => {
     <>
       <Navbar 
         shouldHideOnScroll 
-        className={`bg-[#F8F8F8] ${className}`}
+        className={`${className}`}
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
       >

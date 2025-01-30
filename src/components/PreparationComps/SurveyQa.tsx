@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import BackgroundTemplate from "./BackgroundTemplate";
 import Section from "./Section";
 import ButtonQa from "./ButtonQa";
-import { Button, Progress } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import { Button, Progress, Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/react";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
+import { FileText, Menu } from "lucide-react";
 
 interface SurveyQaProps {
   Question: string;
@@ -17,6 +19,7 @@ interface SurveyQaProps {
   onBack?: () => void;
   nextPath?: string;
   backPath?: string;
+  currentQuestionIndex?: number;
 }
 
 const SurveyQa: React.FC<SurveyQaProps> = ({
@@ -33,6 +36,45 @@ const SurveyQa: React.FC<SurveyQaProps> = ({
 }) => {
   const router = useRouter();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const pathname = usePathname();
+
+  const sections = [
+    {
+      title: "Introduction Questions",
+      questions: [
+        { text: "Tell me about yourself", path: "/introduction/step-1" },
+        { text: "Why do you want to work with us?", path: "/introduction/step-2" },
+        { text: "What do you know about our company?", path: "/introduction/step-3" }
+      ]
+    },
+    {
+      title: "Technical and Hard Skill Questions",
+      questions: [
+        { text: "Can you walk us through a project you've worked on that you're proud of?", path: "/evaluating-skills/step-1" },
+        { text: "How do you stay updated with the latest trends and technologies in your field?", path: "/evaluating-skills/step-2" },
+        { text: "Tell me about a time you worked in a team. What role did you play, and what was the outcome?", path: "/evaluating-skills/step-3" },
+        { text: "Describe a time you faced a conflict at work or school. How did you resolve it?", path: "/evaluating-skills/step-4" }
+      ]
+    },
+    {
+      title: "Assessing Adaptability and Problem-Solving",
+      questions: [
+        { text: "What would you do if you were assigned a task that you didn't know how to complete?", path: "/problem-solving/step-1" },
+        { text: "Tell me about a time you failed or made a mistake. What did you learn from the experience?", path: "/problem-solving/step-2" },
+        { text: "If we asked you a question that you don't know the answer to, how would you respond?", path: "/problem-solving/step-3" },
+        { text: "How do you handle stressful situations or tight deadlines?", path: "/problem-solving/step-4" }
+      ]
+    },
+    {
+      title: "Professionalism and First Impressions",
+      questions: [
+        { text: "Why should we hire you over other candidates?", path: "/professionalism/step-1" },
+        { text: "Where do you see yourself in five years?", path: "/professionalism/step-2" },
+        { text: "Do you have any questions for us?", path: "/professionalism/step-3" },
+      ]
+    }
+  ];
 
   const handleSelection = (answer: string) => {
     setSelectedAnswer(answer);
@@ -40,11 +82,9 @@ const SurveyQa: React.FC<SurveyQaProps> = ({
 
   const handleContinue = () => {
     if (selectedAnswer) {
-      // If onContinue callback is provided, call it with the selected answer
       if (onContinue) {
         onContinue(selectedAnswer);
       }
-      // If nextPath is provided, navigate to it
       if (nextPath) {
         router.push(nextPath);
       }
@@ -52,36 +92,84 @@ const SurveyQa: React.FC<SurveyQaProps> = ({
   };
 
   const handleBack = () => {
-    // If onBack callback is provided, call it
     if (onBack) {
       onBack();
     }
-    // If backPath is provided, navigate to it
     if (backPath) {
       router.push(backPath);
     }
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
-    <>
-      <BackgroundTemplate>
-        <Section className="flex flex-col gap-2 md:gap-4 mt-10">
+    <BackgroundTemplate>
+      <div className="flex flex-row gap-4 w-[80%] mx-auto pt-10 max-sm:flex-col">
+        {/* Sidebar for larger screens */}
+        <div className="w-[30%] h-[calc(100vh-100px)] overflow-y-auto border rounded-lg bg-white shadow-sm max-sm:hidden ">
+          <div className="flex flex-col gap-6 p-4">
+            {sections.map((section, sectionIndex) => (
+              <div key={sectionIndex} className="flex flex-col gap-2">
+                <h3 className="text-neutral-400 text-sm font-medium pl-2">
+                  {section.title}
+                </h3>
+                <div className="flex flex-col gap-1">
+                  {section.questions.map((question, qIndex) => {
+                    const isCurrentQuestion = question.path === pathname;
+                    return (
+                      <Link
+                        key={qIndex}
+                        href={question.path}
+                        className={`flex items-start gap-2 p-2 rounded-lg transition-all duration-200 group
+                          ${isCurrentQuestion 
+                            ? 'bg-blue-50 text-blue-600' 
+                            : 'text-neutral-800 hover:bg-neutral-50'}`}
+                      >
+                        <FileText 
+                          className={`w-5 h-5 mt-0.5 ${
+                            isCurrentQuestion 
+                              ? 'text-blue-600' 
+                              : 'text-neutral-700 group-hover:text-blue-600'
+                          }`} 
+                        />
+                        <span className={`text-sm leading-tight ${
+                          isCurrentQuestion 
+                            ? 'text-blue-600' 
+                            : 'group-hover:text-blue-600'
+                        }`}>
+                          {question.text}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Dropdown button for small screens */}
+        <div className="sm:hidden w-full" >
+          <Button
+            className="w-full mb-4"
+            onClick={toggleDropdown}
+            startContent={<Menu className="w-5 h-5" />}
+            color="primary"
+          >
+            Questions
+          </Button>
+        </div>
+
+        {/* Main content */}
+        <Section className="w-[70%] max-sm:w-full flex flex-col gap-2 md:gap-4">
           <div>
-            <Progress className="mx-auto max-sm:hidden" value={progress}  />
-            {/* <Link href={}>
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.33325 16L4.62615 15.2929L3.91904 16L4.62615 16.7071L5.33325 16ZM25.3333 17C25.8855 17 26.3333 16.5523 26.3333 16C26.3333 15.4477 25.8855 15 25.3333 15V17ZM12.6261 7.29289L4.62615 15.2929L6.04036 16.7071L14.0404 8.70711L12.6261 7.29289ZM4.62615 16.7071L12.6261 24.7071L14.0404 23.2929L6.04036 15.2929L4.62615 16.7071ZM5.33325 17H25.3333V15H5.33325V17Z"
-                  fill="#0F172A"
-                />
-              </svg>
-            </Link> */}
+            <Progress 
+              className="mx-auto max-sm:hidden" 
+              value={progress} 
+              label="Survey Questions"
+            />
           </div>
           <div className="text-medium font-medium text-neutral-800 md:text-xl">
             {Question}
@@ -128,8 +216,57 @@ const SurveyQa: React.FC<SurveyQaProps> = ({
             </Button>
           </div>
         </Section>
-      </BackgroundTemplate>
-    </>
+      </div>
+
+      {/* Dropdown modal for small screens */}
+      <Modal isOpen={isDropdownOpen} onClose={toggleDropdown} size="full">
+        <ModalContent>
+          <ModalHeader className="flex flex-col gap-1">Questions</ModalHeader>
+          <ModalBody>
+            <div className="flex flex-col gap-6 p-4">
+              {sections.map((section, sectionIndex) => (
+                <div key={sectionIndex} className="flex flex-col gap-2">
+                  <h3 className="text-neutral-400 text-sm font-medium pl-2">
+                    {section.title}
+                  </h3>
+                  <div className="flex flex-col gap-1">
+                    {section.questions.map((question, qIndex) => {
+                      const isCurrentQuestion = question.path === pathname;
+                      return (
+                        <Link
+                          key={qIndex}
+                          href={question.path}
+                          className={`flex items-start gap-2 p-2 rounded-lg transition-all duration-200 group
+                            ${isCurrentQuestion 
+                              ? 'bg-blue-50 text-blue-600' 
+                              : 'text-neutral-800 hover:bg-neutral-50'}`}
+                          onClick={toggleDropdown}
+                        >
+                          <FileText 
+                            className={`w-5 h-5 mt-0.5 ${
+                              isCurrentQuestion 
+                                ? 'text-blue-600' 
+                                : 'text-neutral-700 group-hover:text-blue-600'
+                            }`} 
+                          />
+                          <span className={`text-sm leading-tight ${
+                            isCurrentQuestion 
+                              ? 'text-blue-600' 
+                              : 'group-hover:text-blue-600'
+                          }`}>
+                            {question.text}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </BackgroundTemplate>
   );
 };
 
