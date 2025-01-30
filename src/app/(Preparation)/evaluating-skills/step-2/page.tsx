@@ -5,6 +5,7 @@ export default function page() {
   return (
     <>
       <InterviewSession
+      
         step="Technical and Hard Skill Questions 5"
         main_question="How do you stay updated with the latest trends and technologies in your field?"
         des="This question is about your passion for growth. Mention how you keep learning, whether through courses, blogs, or communities."

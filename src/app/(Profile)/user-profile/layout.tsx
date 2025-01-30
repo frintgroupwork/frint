@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../../globals.css";
 import { Providers } from "../../Providers";
-import Nav from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  icons: "/frint_logo.svg",
-  title: "FRINT - Problem Solving",
+  icons: "frint_logo.svg",
+  title: "FRINT - sign up",
   description: "Your confidence is our confidence.",
 };
 
@@ -30,14 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-                <div className="​flex flex-col justify-between min-h-screen ">
-                  <Providers>
-                    <div>
-                      <Nav className="sm:pt-5" />
-                    </div>
-                    <div>{children}</div>
-                  </Providers>
-                </div>
+          <Providers>{children}</Providers>
       </body>
     </html>
   );

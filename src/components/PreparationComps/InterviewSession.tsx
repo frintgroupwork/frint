@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Progress, Button, Chip } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
-import SessionTemplate from "./SessionTemplate";
+import { Progress, Button, Chip, Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/react";
+import { useRouter, usePathname } from "next/navigation";
 import Section from "./Section";
 import Link from "next/link";
+import { FileText, Menu } from "lucide-react";
 
 const InterviewSession = ({
   progress,
@@ -32,6 +32,84 @@ const InterviewSession = ({
   const router = useRouter();
   const [showExample, setShowExample] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const pathname = usePathname();
+
+  const sections = [
+    {
+      title: "Introduction Questions",
+      questions: [
+        { text: "Tell me about yourself", path: "/introduction/step-1" },
+        {
+          text: "Why do you want to work with us?",
+          path: "/introduction/step-2",
+        },
+        {
+          text: "What do you know about our company?",
+          path: "/introduction/step-3",
+        },
+      ],
+    },
+    {
+      title: "Technical and Hard Skill Questions",
+      questions: [
+        {
+          text: "Can you walk us through a project you've worked on that you're proud of?",
+          path: "/evaluating-skills/step-1",
+        },
+        {
+          text: "How do you stay updated with the latest trends and technologies in your field?",
+          path: "/evaluating-skills/step-2",
+        },
+        {
+          text: "Tell me about a time you worked in a team. What role did you play, and what was the outcome?",
+          path: "/evaluating-skills/step-3",
+        },
+        {
+          text: "Describe a time you faced a conflict at work or school. How did you resolve it?",
+          path: "/evaluating-skills/step-4",
+        },
+      ],
+    },
+    {
+      title: "Assessing Adaptability and Problem-Solving",
+      questions: [
+        {
+          text: "What would you do if you were assigned a task that you didn't know how to complete?",
+          path: "/problem-solving/step-1",
+        },
+        {
+          text: "Tell me about a time you failed or made a mistake. What did you learn from the experience?",
+          path: "/problem-solving/step-2",
+        },
+        {
+          text: "If we asked you a question that you don't know the answer to, how would you respond?",
+          path: "/problem-solving/step-3",
+        },
+        {
+          text: "How do you handle stressful situations or tight deadlines?",
+          path: "/problem-solving/step-4",
+        },
+      ],
+    },
+    {
+      title: "Professionalism and First Impressions",
+      questions: [
+        {
+          text: "Why should we hire you over other candidates?",
+          path: "/professionalism/step-1",
+        },
+        {
+          text: "Where do you see yourself in five years?",
+          path: "/professionalism/step-2",
+        },
+        {
+          text: "Do you have any questions for us?",
+          path: "/professionalism/step-3",
+        },
+      ],
+    },
+  ];
 
   // Delay rendering the main component by 0.5 seconds
   useEffect(() => {
@@ -43,11 +121,14 @@ const InterviewSession = ({
     router.push(path);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   if (loading) {
     // Skeleton state
     return (
-      <SessionTemplate>
+      <div>
         <Section className="w-full h-screen flex flex-col justify-evenly items-center gap-4 bg-gray-50 animate-pulse">
           {/* Progress Bar Skeleton */}
           <div className="hidden sm:block w-1/2 h-4 bg-gray-200 rounded" />
@@ -76,15 +157,75 @@ const InterviewSession = ({
             <div className="h-10 w-40 bg-gray-200 rounded" />
           </div>
         </Section>
-      </SessionTemplate>
+      </div>
     );
   }
 
   return (
-    <SessionTemplate>
-      <Section className="w-full h-screen flex flex-col justify-evenly max-sm:justify-center gap-2">
-        <div className="hidden sm:block ">
-          <Progress value={progress} className="w-1/2 mx-auto" />
+    <div className="flex flex-row gap-4 w-[90%] mx-auto max-sm:flex-col">
+      {/* Sidebar for larger screens */}
+      <div className="w-[30%] h-[calc(100vh-100px)] overflow-y-auto border rounded-lg bg-white shadow-sm max-sm:hidden ">
+        <div className="flex flex-col gap-6 p-4">
+          {sections.map((section, sectionIndex) => (
+            <div key={sectionIndex} className="flex flex-col gap-2">
+              <h3 className="text-neutral-400 text-sm font-medium pl-2">
+                {section.title}
+              </h3>
+              <div className="flex flex-col gap-1">
+                {section.questions.map((question, qIndex) => {
+                  const isCurrentQuestion = question.path === pathname;
+                  return (
+                    <Link
+                      key={qIndex}
+                      href={question.path}
+                      className={`flex items-start gap-2 p-2 rounded-lg transition-all duration-200 group
+                          ${
+                            isCurrentQuestion
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-neutral-800 hover:bg-neutral-50"
+                          }`}
+                    >
+                      <FileText
+                        className={`w-5 h-5 mt-0.5 ${
+                          isCurrentQuestion
+                            ? "text-blue-600"
+                            : "text-neutral-700 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span
+                        className={`text-sm leading-tight ${
+                          isCurrentQuestion
+                            ? "text-blue-600"
+                            : "group-hover:text-blue-600"
+                        }`}
+                      >
+                        {question.text}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dropdown button for small screens */}
+      <div className="sm:hidden w-full pt-5">
+        <Button
+          className="w-full mb-4"
+          onClick={toggleDropdown}
+          startContent={<Menu className="w-5 h-5" />}
+          color="primary"
+        >
+          Questions
+        </Button>
+      </div>
+
+      {/* Main Content */}
+      <Section className="w-[70%] max-sm:w-full justify-center mx-auto flex flex-col items-center gap-8">
+        <div className="hidden sm:block w-1/2 ">
+          <Progress value={progress} className="" />
         </div>
         <div
           className={`${
@@ -98,18 +239,18 @@ const InterviewSession = ({
               className="text-[#1d4ed8] font-medium underline flex flex-row justify-center gap-2 items-center"
               href={`${backPath}`}
             >
-               <svg
-              width="14"
-              height="14"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5.33325 16L4.62615 15.2929L3.91904 16L4.62615 16.7071L5.33325 16ZM25.3333 17C25.8855 17 26.3333 16.5523 26.3333 16C26.3333 15.4477 25.8855 15 25.3333 15V17ZM12.6261 7.29289L4.62615 15.2929L6.04036 16.7071L14.0404 8.70711L12.6261 7.29289ZM4.62615 16.7071L12.6261 24.7071L14.0404 23.2929L6.04036 15.2929L4.62615 16.7071ZM5.33325 17H25.3333V15H5.33325V17Z"
-                fill="#0F172A"
-              />
-            </svg>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.33325 16L4.62615 15.2929L3.91904 16L4.62615 16.7071L5.33325 16ZM25.3333 17C25.8855 17 26.3333 16.5523 26.3333 16C26.3333 15.4477 25.8855 15 25.3333 15V17ZM12.6261 7.29289L4.62615 15.2929L6.04036 16.7071L14.0404 8.70711L12.6261 7.29289ZM4.62615 16.7071L12.6261 24.7071L14.0404 23.2929L6.04036 15.2929L4.62615 16.7071ZM5.33325 17H25.3333V15H5.33325V17Z"
+                  fill="#0F172A"
+                />
+              </svg>
               {step}{" "}
             </Link>
             of 14
@@ -166,7 +307,60 @@ const InterviewSession = ({
           </Button>
         </div>
       </Section>
-    </SessionTemplate>
+
+      {/* Dropdown Modal for Small Screens */}
+      <Modal isOpen={isDropdownOpen} onClose={toggleDropdown} size="full">
+        <ModalContent>
+          <ModalHeader className="flex flex-col gap-1">Questions</ModalHeader>
+          <ModalBody>
+            <div className="flex flex-col gap-6 p-4">
+              {sections.map((section, sectionIndex) => (
+                <div key={sectionIndex} className="flex flex-col gap-2">
+                  <h3 className="text-neutral-400 text-sm font-medium pl-2">
+                    {section.title}
+                  </h3>
+                  <div className="flex flex-col gap-1">
+                    {section.questions.map((question, qIndex) => {
+                      const isCurrentQuestion = question.path === pathname;
+                      return (
+                        <Link
+                          key={qIndex}
+                          href={question.path}
+                          className={`flex items-start gap-2 p-2 rounded-lg transition-all duration-200 group
+                            ${
+                              isCurrentQuestion
+                                ? "bg-blue-50 text-blue-600"
+                                : "text-neutral-800 hover:bg-neutral-50"
+                            }`}
+                          onClick={toggleDropdown} // Close modal on link click
+                        >
+                          <FileText
+                            className={`w-5 h-5 mt-0.5 ${
+                              isCurrentQuestion
+                                ? "text-blue-600"
+                                : "text-neutral-700 group-hover:text-blue-600"
+                            }`}
+                          />
+                          <span
+                            className={`text-sm leading-tight ${
+                              isCurrentQuestion
+                                ? "text-blue-600"
+                                : "group-hover:text-blue-600"
+                            }`}
+                          >
+                            {question.text}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </div>
   );
 };
 
