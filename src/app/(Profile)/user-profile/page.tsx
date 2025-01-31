@@ -1,10 +1,10 @@
-import ProfileLayout from "@/components/Profile/ProfileLayout";
+import Profile from "@/components/Profile/Profile";
 import React from "react";
 
 function page() {
   return (
     <>
-      <ProfileLayout/>
+      <Profile/>
     </>
   );
 }

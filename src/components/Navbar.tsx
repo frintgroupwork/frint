@@ -9,20 +9,32 @@ import {
   Button,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem
+  NavbarMenuItem,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar
 } from "@nextui-org/react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Nav = ({ className }: { className?: string }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  
+  const [isResourcesOpen, setIsResourcesOpen] = React.useState(false);
+  const [isProfileOpen, setIsProfileOpen] = React.useState(false);
+
+  // Simulate authentication state (replace with actual token check)
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false); // Assume user is authenticated
+  const user = { name: "John Doe", avatar: "/user-avatar.png" }; // Replace with actual user data
+
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/resource", label: "Resources" },
+    { path: "/introduction/step-1", label: "Questions" },
     { path: "/about-us", label: "About Us" },
-    { path: "/blogs", label: "Blogs" },
+    { path: "/resource", label: "Resources" },
     { path: "/contact", label: "Contact Us" },
   ];
 
@@ -30,11 +42,22 @@ export const Nav = ({ className }: { className?: string }) => {
     return pathname === path;
   };
 
+  const handleResourceClick = (path: string) => {
+    router.push(path);
+    setIsResourcesOpen(false); // Close the dropdown after navigation
+  };
+
+  const handleLogout = () => {
+    // Clear token or authentication state
+    setIsAuthenticated(false);
+    router.push("/login"); // Redirect to login page
+  };
+
   return (
     <>
       <Navbar 
         shouldHideOnScroll 
-        className={`${className}`}
+        className={`${className} max-sm:bg-white shadow-sm`}
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
       >
@@ -54,44 +77,118 @@ export const Nav = ({ className }: { className?: string }) => {
         </NavbarContent>
 
         <NavbarContent
-          className="hidden sm:flex gap-4 bg-white sm:px-8 sm:rounded-2xl sm:shadow-sm"
+          className="hidden sm:flex gap-4 bg-white"
           justify="center"
         >
           {navItems.map((item) => (
-            <NavbarItem key={item.path} isActive={isActivePath(item.path)} className="">
-              <Link 
-                href={item.path}
-                color={isActivePath(item.path) ? "primary" : "foreground"}
+            item.label === "Resources" ? (
+              <Dropdown 
+                isOpen={isResourcesOpen} 
+                onOpenChange={setIsResourcesOpen} 
+                key={item.path}
               >
-                {item.label}
-              </Link>
-            </NavbarItem>
+                <DropdownTrigger>
+                  <NavbarItem 
+                    isActive={isActivePath(item.path)}
+                    onMouseEnter={() => setIsResourcesOpen(true)} // Open on hover
+                    onMouseLeave={() => setIsResourcesOpen(false)} // Close on hover out
+                  >
+                    <Link
+                      color={isActivePath(item.path) ? "primary" : "foreground"}
+                      className="cursor-pointer"
+                    >
+                      {item.label}
+                    </Link>
+                  </NavbarItem>
+                </DropdownTrigger>
+                <DropdownMenu 
+                  aria-label="Resource Links"
+                  onMouseEnter={() => setIsResourcesOpen(true)} // Keep open when hovering over dropdown
+                  onMouseLeave={() => setIsResourcesOpen(false)} // Close when hovering out
+                >
+                  <DropdownItem 
+                    key="blogs" 
+                    onPress={() => handleResourceClick("/blogs")}
+                  >
+                    Blogs
+                  </DropdownItem>
+                  <DropdownItem 
+                    key="resource" 
+                    onPress={() => handleResourceClick("/resource")}
+                  >
+                    Resource
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <NavbarItem key={item.path} isActive={isActivePath(item.path)}>
+                <Link 
+                  href={item.path}
+                  color={isActivePath(item.path) ? "primary" : "foreground"}
+                >
+                  {item.label}
+                </Link>
+              </NavbarItem>
+            )
           ))}
         </NavbarContent>
 
         <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link href="/login">
-              <Button 
-                color={isActivePath("/login") ? "primary" : "primary"} 
-                variant="bordered" 
-                size="lg"
-              >
-                Login
-              </Button>
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link href="/signup">
-              <Button 
-                color={isActivePath("/signup") ? "primary" : "primary"} 
-                variant="solid" 
-                size="lg"
-              >
-                Sign Up
-              </Button>
-            </Link>
-          </NavbarItem>
+          {isAuthenticated ? (
+            <Dropdown 
+              isOpen={isProfileOpen} 
+              onOpenChange={setIsProfileOpen}
+            >
+              <DropdownTrigger>
+                <NavbarItem>
+                  <div className="flex items-center gap-2 cursor-pointer">
+                    <Avatar
+                      src={user.avatar}
+                      alt={user.name}
+                      size="sm"
+                    />
+                    <span className="font-medium">{user.name}</span>
+                  </div>
+                </NavbarItem>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="User Menu">
+                <DropdownItem key="profile" onPress={() => router.push("/profile")}>
+                  Profile
+                </DropdownItem>
+                <DropdownItem key="settings" onPress={() => router.push("/settings")}>
+                  Settings
+                </DropdownItem>
+                <DropdownItem key="logout" onPress={handleLogout} className="text-danger" color="danger">
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          ) : (
+            <>
+              <NavbarItem className="hidden lg:flex">
+                <Link href="/login">
+                  <Button 
+                    color={isActivePath("/login") ? "primary" : "primary"} 
+                    variant="bordered" 
+                    size="lg"
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link href="/signup">
+                  <Button 
+                    color={isActivePath("/signup") ? "primary" : "primary"} 
+                    variant="solid" 
+                    size="lg"
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              </NavbarItem>
+            </>
+          )}
         </NavbarContent>
 
         <NavbarMenu className="bg-background/70 backdrop-blur-md">

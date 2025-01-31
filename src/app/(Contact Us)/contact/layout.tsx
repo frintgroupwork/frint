@@ -34,7 +34,7 @@ export default function RootLayout({
         <div className="​flex flex-col justify-between min-h-screen ">
           <Providers>
             <div>
-              <Nav className="pt-5" />
+              <Nav className="sm:pt-2"  />
             </div>
             <div className="flex-grow flex items-center justify-center">
               {children}
